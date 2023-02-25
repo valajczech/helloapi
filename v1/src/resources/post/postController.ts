@@ -19,6 +19,8 @@ class PostController implements Controller {
       validationMiddleware(validation.create),
       this.create
     );
+
+    this.router.get(`${this.path}`, this.getAllPosts);
   }
   private create = async (
     req: Request,
@@ -32,6 +34,16 @@ class PostController implements Controller {
     } catch (e: any) {
       next(new HttpException(400, e.message));
     }
+  };
+
+  private getAllPosts = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> => {
+    res.send({
+      message: "Hello",
+    });
   };
 }
 
